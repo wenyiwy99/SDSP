@@ -159,7 +159,7 @@ def main(dataset_path, model_name, epoch, learning_rate, batch_size, weight_deca
         model = MMOE_SDSP(dense_feas+sparse_feas, scaled_batch, domain_num, n_expert = expert_num, expert_params={"dims": [32]}, tower_params={"dims": [16]})
     elif model_name == "PLE":
         model = PLE_SDSP(dense_feas+sparse_feas, scaled_batch,domain_num, n_level=1, n_expert_specific=2, n_expert_shared=expert_num, expert_params={"dims": [16]}, tower_params={"dims": [8]})
-    ctr_trainer = CTRTrainer(model, dataset_name, init_iter=1, optimizer_params={"lr": learning_rate, "weight_decay": weight_decay},
+    ctr_trainer = CTRTrainer(model, dataset_name, init_iter=2, optimizer_params={"lr": learning_rate, "weight_decay": weight_decay},
                              n_epoch=epoch, earlystop_patience=5, proto_gamma=proto_gamma,device=device, model_path=save_dir,
                              scheduler_params={"step_size": 4, "gamma": 0.95})
     ctr_trainer.fit(train_dataloader, val_dataloader)
