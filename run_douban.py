@@ -97,7 +97,7 @@ def main(dataset_path, model_name, epoch, learning_rate, batch_size, weight_deca
         model = MMOE_SDSP(dense_feas+sparse_feas, scaled_batch, domain_num, n_expert = expert_num, expert_params={"dims": [16]}, tower_params={"dims": [8]})
     elif model_name == "PLE":
         model = PLE_SDSP(dense_feas+sparse_feas, scaled_batch, domain_num, n_level=1, n_expert_specific=2, n_expert_shared=expert_num, expert_params={"dims": [16]}, tower_params={"dims": [8]})
-    ctr_trainer = CTRTrainer(model, dataset_name, init_iter=-1, optimizer_params={"lr": learning_rate, "weight_decay": weight_decay}, n_epoch=epoch, earlystop_patience=4, proto_gamma=proto_gamma, device=device, model_path=save_dir,scheduler_params={"step_size": 2,"gamma": 0.85})
+    ctr_trainer = CTRTrainer(model, dataset_name, init_iter=0, optimizer_params={"lr": learning_rate, "weight_decay": weight_decay}, n_epoch=epoch, earlystop_patience=4, proto_gamma=proto_gamma, device=device, model_path=save_dir,scheduler_params={"step_size": 2,"gamma": 0.85})
     #scheduler_fn=torch.optim.lr_scheduler.StepLR,scheduler_params={"step_size": 2,"gamma": 0.8},
     ctr_trainer.fit(train_dataloader, val_dataloader)
     domain_logloss,domain_auc,logloss,auc = ctr_trainer.evaluate_multi_domain_loss(ctr_trainer.model, test_dataloader,domain_num,True)
