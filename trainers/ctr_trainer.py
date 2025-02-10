@@ -76,9 +76,6 @@ class CTRTrainer(object):
         for i, (x_dict, y) in enumerate(tk0):
             x_dict = {k: v.to(self.device) for k, v in x_dict.items()}  #tensor to GPU
             y = y.to(self.device)
-            
-            y_pred = self.model(x_dict)
-   
             y_pred, ori_sam_emb, new_sam_emb = self.model(x_dict)
             loss = self.criterion(y_pred, y.float())
             loss_rec = 0
