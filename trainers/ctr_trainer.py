@@ -119,7 +119,7 @@ class CTRTrainer(object):
                 if auc_best < auc:
                     auc_best = auc
                     self.model.sim_domain_best = self.model.sim_domain
-                if epoch_i % 2 == 0 and epoch_i > self.init_iter:
+                if epoch_i % 2 == 0 and epoch_i >= self.init_iter:
                     if search_flag:
                         print("Search Phase Begins:")
                         search_flag = False
