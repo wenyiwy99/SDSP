@@ -1,5 +1,6 @@
 # SDSP
-An official source code for paper Measure Domain's Gap: A Similar Domain Selection Principle for Multi-Domain Recommendation
+An official source code for paper Measure Domain's Gap: A Similar Domain Selection Principle for Multi-Domain Recommendation, accepted by KDD 2025. Any communications or issues are welcomed. Please contact wenyiwy2022@163.com.
+
 
 ## Environment
 * python
